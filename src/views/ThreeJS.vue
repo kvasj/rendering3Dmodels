@@ -1,4 +1,5 @@
 <template>
+    <canvas id="canvas"></canvas>
 </template>
 
 <script>
@@ -9,7 +10,7 @@ export default {
     created () {
         window.addEventListener("resize", this.onWindowResize);
         return {
-            cube: null,
+            mesh: null,
             geometry: null,
             material: null,
             renderer: null,
@@ -32,8 +33,9 @@ export default {
 			this.scene = new THREE.Scene();
 			this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 			this.camera.position.z = 8;
-
-			this.renderer = new THREE.WebGLRenderer();
+            
+            const canvas = document.querySelector('#canvas');
+			this.renderer = new THREE.WebGLRenderer({canvas});
 			this.renderer.setSize(window.innerWidth, window.innerHeight);
             this.renderer.setPixelRatio(window.devicePixelRatio)
 			document.body.appendChild(this.renderer.domElement);
@@ -67,49 +69,47 @@ export default {
 			this.pointLightYELLOW.add(new THREE.Mesh(this.sphere, new THREE.MeshBasicMaterial({ color: 0xffff00 })));
 			this.scene.add(this.pointLightYELLOW);
 
-			//make cube
+			//make mesh
 			//---------------------------------------------------
-			this.geometry = new THREE.BoxGeometry(1, 1, 1);
-			this.material = new THREE.MeshPhongMaterial({ color: 0xFFFFFF });
-			this.cube = new THREE.Mesh(this.geometry, this.material);
+			this.geometry = new THREE.TorusKnotGeometry( 10, 3, 170, 20 );
+			this.material = new THREE.MeshPhysicalMaterial({ color: 0xFFFFFF, wireframe: true });
+			this.mesh = new THREE.Mesh(this.geometry, this.material);
 			//---------------------------------------------------
-			//add cube to scene
-			this.scene.add(this.cube);
+			//add mesh to scene
+			this.scene.add(this.mesh);
             
             //this.renderer.render(this.scene, this.camera);
         },
 
         animate: function() {
             requestAnimationFrame(this.animate);
+            this.render();
+        },
 
-            this.cube.rotation.y += 0.01;
-            
+        render: function() {
+            this.mesh.rotation.y += 0.002;
 
             const time = Date.now() * 0.0009;
 
-			this.pointLightRED.position.x = Math.sin(time * 0.5) * 3;
-			this.pointLightRED.position.y = Math.cos(time * 0.3) * 3;
-			this.pointLightRED.position.z = Math.cos(time * 0.7) * 3;
+			this.pointLightRED.position.x = Math.sin(time * 0.5) * 30;
+			this.pointLightRED.position.y = Math.cos(time * 0.3) * 30;
+			this.pointLightRED.position.z = Math.cos(time * 0.7) * 30;
 
-			this.pointLightGREEN.position.x = Math.cos(time * 0.3) * 3;
-			this.pointLightGREEN.position.y = Math.sin(time * 0.7) * 3;
-			this.pointLightGREEN.position.z = Math.sin(time * 0.5) * 3;
+			this.pointLightGREEN.position.x = Math.cos(time * 0.3) * 30;
+			this.pointLightGREEN.position.y = Math.sin(time * 0.7) * 30;
+			this.pointLightGREEN.position.z = Math.sin(time * 0.5) * 30;
 
-			this.pointLightBLUE.position.x = Math.sin(time * 0.5) * 3;
-			this.pointLightBLUE.position.y = Math.cos(time * 0.5) * 3;
-			this.pointLightBLUE.position.z = Math.sin(time * 0.5) * 3;
+			this.pointLightBLUE.position.x = Math.sin(time * 0.5) * 30;
+			this.pointLightBLUE.position.y = Math.cos(time * 0.5) * 30;
+			this.pointLightBLUE.position.z = Math.sin(time * 0.5) * 30;
 
-			this.pointLightYELLOW.position.x = Math.cos(time * 0.3) * 3;
-			this.pointLightYELLOW.position.y = Math.sin(time * 0.5) * 3;
-			this.pointLightYELLOW.position.z = Math.cos(time * 0.3) * 3;
+			this.pointLightYELLOW.position.x = Math.cos(time * 0.3) * 30;
+			this.pointLightYELLOW.position.y = Math.sin(time * 0.5) * 30;
+			this.pointLightYELLOW.position.z = Math.cos(time * 0.3) * 30;
             
             this.controls.update()
 
 		    this.renderer.render(this.scene, this.camera);
-        },
-
-        render: function() {
-
         },
 
         onWindowResize: function() {
