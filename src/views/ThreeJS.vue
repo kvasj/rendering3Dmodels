@@ -14,8 +14,10 @@ export default {
             renderer: null,
             scene: null,
             camera: null,
-            ambientLight: null,
-            pointLight: null,
+            pointLight1: null,
+            pointLight2: null,
+            pointLight3: null,
+            pointLight4: null,
             pointLightHelper: null,
             controls: null,
         }
@@ -32,6 +34,7 @@ export default {
 			this.renderer.setSize( window.innerWidth, window.innerHeight );
             this.renderer.setPixelRatio( window.devicePixelRatio )
 			document.body.appendChild( this.renderer.domElement );
+
             //controls
             //---------------------------------------------------
             this.controls = new OrbitControls(this.camera, this.renderer.domElement);
@@ -39,13 +42,27 @@ export default {
 			//---------------------------------------------------
             //make light
             //---------------------------------------------------
-            this.ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-            this.scene.add(this.ambientLight);
-            this.pointLight = new THREE.PointLight(0xffffff, 0.5);
-            this.pointLight.position.set(3, 0, 0);
-            this.pointLightHelper = new THREE.PointLightHelper( this.pointLight, 0.1 );
-            this.scene.add( this.pointLightHelper );
-            this.scene.add(this.pointLight)
+            const sphere = new THREE.SphereGeometry( 0.1, 32, 16 );
+
+            this.pointLight1 = new THREE.PointLight( 0xff0040, 2, 50 );
+			this.pointLight1.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0xff0040 } ) ) );
+			this.scene.add( this.pointLight1 );
+
+			this.pointLight2 = new THREE.PointLight( 0x0040ff, 2, 50 );
+			this.pointLight2.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0x0040ff } ) ) );
+			this.scene.add( this.pointLight2 );
+
+			this.pointLight3 = new THREE.PointLight( 0x80ff80, 2, 50 );
+			this.pointLight3.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0x80ff80 } ) ) );
+			this.scene.add( this.pointLight3 );
+
+			this.pointLight4 = new THREE.PointLight( 0xffaa00, 2, 50 );
+			this.pointLight4.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0xffaa00 } ) ) );
+			this.scene.add( this.pointLight4 );
+            //this.pointLight.position.set(2, 2, 2);
+            //this.pointLightHelper = new THREE.PointLightHelper( this.pointLight, 0.1 );
+            //this.scene.add( this.pointLightHelper );
+            //this.scene.add(this.pointLight)
 			//make cube
 			//---------------------------------------------------
 			this.geometry = new THREE.BoxGeometry(2, 2, 2);
@@ -61,15 +78,51 @@ export default {
         animate: function() {
             requestAnimationFrame( this.animate );
 
-			
+            /*
             this.cube.rotation.x += 0.01;
 			this.cube.rotation.y += 0.01;
             this.cube.rotation.z += 0.01;
+            */
+
+            const time = Date.now() * 0.0009;
+			/*
+            const delta = clock.getDelta();
+
+			if ( object ) object.rotation.y -= 0.5 * delta;
+            */
+
+			this.pointLight1.position.x = Math.sin( time * 0.7 ) * 3;
+			this.pointLight1.position.y = Math.cos( time * 0.5 ) * 4;
+			this.pointLight1.position.z = Math.cos( time * 0.3 ) * 3;
+
+			this.pointLight2.position.x = Math.cos( time * 0.3 ) * 3;
+			this.pointLight2.position.y = Math.sin( time * 0.5 ) * 4;
+			this.pointLight2.position.z = Math.sin( time * 0.7 ) * 3;
+
+			this.pointLight3.position.x = Math.sin( time * 0.7 ) * 3;
+			this.pointLight3.position.y = Math.cos( time * 0.3 ) * 4;
+			this.pointLight3.position.z = Math.sin( time * 0.5 ) * 3;
+
+			this.pointLight4.position.x = Math.sin( time * 0.3 ) * 3;
+			this.pointLight4.position.y = Math.cos( time * 0.7 ) * 4;
+			this.pointLight4.position.z = Math.sin( time * 0.5 ) * 3;
             
             this.controls.update()
 
 		    this.renderer.render( this.scene, this.camera );
-        }
+        },
+
+        render: function() {
+
+        },
+
+        onWindowResize: function() {
+			this.camera.aspect = window.innerWidth / window.innerHeight;
+			this.camera.updateProjectionMatrix();
+
+			this.renderer.setSize( window.innerWidth, window.innerHeight );
+
+		}
     },
 
     mounted() {
