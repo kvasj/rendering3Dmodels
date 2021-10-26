@@ -6,7 +6,8 @@
             Three.js
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><router-link to="/threejs" class="dropdown-item"><span>Torus Knot Geometry</span></router-link></li>
+            <li><router-link :to="{ name: 'TorusKnotGeometry'}" class="dropdown-item"><span>Torus Knot Geometry</span></router-link></li>
+            <li><router-link :to="{ name: '3DModel'}" class="dropdown-item"><span>3D model</span></router-link></li>
           </ul>
         </li>
 

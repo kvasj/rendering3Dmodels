@@ -1,13 +1,19 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import ThreeJS from '../views/ThreeJS.vue'
+import TorusKnotGeometry from '../views/ThreeJS/TorusKnotGeometry.vue'
+import Model3D from '../views/ThreeJS/3DModel.vue'
 import BabylonJS from '../views/BabylonJS.vue'
 import ModelViewer from '../views/ModelViewer.vue'
 
 const routes = [
   {
-    path: '/threejs',
-    name: 'Threejs',
-    component: ThreeJS
+    path: '/threejs/TorusKnotGeometry',
+    name: 'TorusKnotGeometry',
+    component: TorusKnotGeometry
+  },
+  {
+    path: '/threejs/3d-model',
+    name: '3DModel',
+    component: Model3D
   },
   {
     path: '/babylonjs',
