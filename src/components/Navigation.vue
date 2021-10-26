@@ -51,7 +51,7 @@
 .nav-link, .dropdown-item{
   font-weight: bold;
   text-decoration: none;
-  color: #2c3e50;
+  color: white;
 }
 
 .nav-link:hover, .dropdown-item:hover{

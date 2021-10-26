@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 import TorusKnotGeometry from '../views/ThreeJS/TorusKnotGeometry.vue'
 import Model3D from '../views/ThreeJS/3DModel.vue'
 import BabylonJS from '../views/BabylonJS.vue'
@@ -28,7 +28,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes
 })
 
