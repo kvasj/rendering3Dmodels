@@ -1,5 +1,6 @@
 <template>
     <canvas id="canvas"></canvas>
+    <!-- Godette by swift502 [CC-BY] (https://creativecommons.org/licenses/by/3.0/) via Poly Pizza (https://poly.pizza/m/DpQcXGdzXp) -->
 </template>
 
 <script>
@@ -16,6 +17,8 @@ export default {
             camera: null,
             controls: null,
             model: null,
+            mixer: null,
+            clock: null,
         }
     },
     methods: {
@@ -25,7 +28,7 @@ export default {
 			this.scene = new THREE.Scene();
             this.scene.background = new THREE.Color( 0x404040)
 			this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 5000);
-			this.camera.position.z = 100;
+			this.camera.position.z = 130;
             
             const canvas = document.querySelector('#canvas');
 			this.renderer = new THREE.WebGLRenderer({canvas});
@@ -50,18 +53,13 @@ export default {
             //make loader
             //---------------------------------------------------
             const fbxLoader = new FBXLoader();
-            fbxLoader.load('/models/New Folder/Black Dragon NEW/Dragon 2.5_fbx.fbx',
+            fbxLoader.load('/models/Godette/godette.fbx',
                 ( object ) => {
-                    /*object.traverse(function (child) {
-                        if ((child as THREE.Mesh).isMesh) {
-                            (child as THREE.Mesh).material = material
-                            if ((child as THREE.Mesh).material) {
-                                ((child as THREE.Mesh).material as THREE.MeshBasicMaterial).transparent = false
-                            }
-                        }
-                    })*/
-                    //object.scale.set(.01, .01, .01)
                     this.model = object;
+                    this.mixer = new THREE.AnimationMixer( this.model );
+                    let action = this.mixer.clipAction( this.model.animations[0] );
+                    action.play();
+                
                     this.scene.add(this.model)
                 }
             )
@@ -73,8 +71,9 @@ export default {
         },
 
         render: function() {
-
-            this.controls.update()
+            this.controls.update();
+            if(this.mixer)
+                this.mixer.update(0.01)
 
 		    this.renderer.render(this.scene, this.camera);
         },
