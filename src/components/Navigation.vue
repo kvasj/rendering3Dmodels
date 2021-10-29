@@ -37,8 +37,8 @@
 <style scoped>
 #nav {
   margin: 20px;
-  position: absolute;
-  top: 0;
+  position: fixed;
+  background-color: transparent;
 }
 
 .navbar-nav{
