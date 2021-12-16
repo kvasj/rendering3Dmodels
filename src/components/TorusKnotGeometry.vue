@@ -1,4 +1,5 @@
 <template>
+    <canvas id="canvas"></canvas>
 </template>
 
 <script>
@@ -33,7 +34,8 @@ export default {
 			this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 			this.camera.position.z = 8;
             
-			this.renderer = new THREE.WebGLRenderer();
+			var canvas = document.getElementById("canvas")
+			this.renderer = new THREE.WebGLRenderer({antialias: true, canvas: canvas});
 			this.renderer.setSize(window.innerWidth, window.innerHeight);
             this.renderer.setPixelRatio(window.devicePixelRatio)
 			document.body.appendChild(this.renderer.domElement);
@@ -117,9 +119,6 @@ export default {
             this.renderer.setPixelRatio(window.devicePixelRatio)
 		},
         
-        destroyed () {
-            console.log('skull destroyed');
-        },
     },
 
     mounted() {

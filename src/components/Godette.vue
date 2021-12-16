@@ -1,5 +1,6 @@
 <template>
     <!-- Godette by swift502 [CC-BY] (https://creativecommons.org/licenses/by/3.0/) via Poly Pizza (https://poly.pizza/m/DpQcXGdzXp) -->
+    <canvas id="canvas"></canvas>
 </template>
 
 <script>
@@ -29,7 +30,8 @@ export default {
 			this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 5000);
 			this.camera.position.z = 130;
             
-			this.renderer = new THREE.WebGLRenderer();
+			var canvas =  document.getElementById("canvas")
+			this.renderer = new THREE.WebGLRenderer({antialias: true, canvas: canvas});
 			this.renderer.setSize(window.innerWidth, window.innerHeight);
             this.renderer.setPixelRatio(window.devicePixelRatio)
 			document.body.appendChild(this.renderer.domElement);
