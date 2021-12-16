@@ -6,9 +6,9 @@
             Three.js
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><router-link :to="{ name: 'TorusKnotGeometry'}" class="dropdown-item"><span>Torus Knot Geometry</span></router-link></li>
-            <li><router-link :to="{ name: 'OBJModels'}" class="dropdown-item"><span>OBJ models</span></router-link></li>
-            <li><router-link :to="{ name: 'FBXModels'}" class="dropdown-item"><span>FBX models</span></router-link></li>
+            <li><router-link :to="{ name: 'TorusKnotGeometryThreeJS'}" class="dropdown-item"><span>Torus Knot Geometry</span></router-link></li>
+            <li><router-link :to="{ name: 'OBJModelsThreeJS'}" class="dropdown-item"><span>OBJ models</span></router-link></li>
+            <li><router-link :to="{ name: 'FBXModelsThreeJS'}" class="dropdown-item"><span>FBX models</span></router-link></li>
           </ul>
         </li>
 
@@ -17,7 +17,7 @@
             Babylon.js
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><router-link to="/babylonjs" class="dropdown-item"><span>in progress</span></router-link></li>
+            <li><router-link :to="{ name: 'OBJModelsBabylonJS'}" class="dropdown-item"><span>OBJ models</span></router-link></li>
           </ul>
         </li>
 

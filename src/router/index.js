@@ -2,7 +2,7 @@ import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router
 import TorusKnotGeometry from '../views/ThreeJS/TorusKnotGeometry.vue'
 import OBJModels from '../views/ThreeJS/OBJModels.vue'
 import FBXModels from '../views/ThreeJS/FBXModels.vue'
-import BabylonJS from '../views/BabylonJS.vue'
+import BabylonJS from '../views/BabylonJS/OBJModels.vue'
 import ModelViewer from '../views/ModelViewer.vue'
 import Home from '../views/Home.vue'
 
@@ -13,23 +13,23 @@ const routes = [
     component: Home
   },
   {
-    path: '/threejs/TorusKnotGeometry',
-    name: 'TorusKnotGeometry',
+    path: '/threejs/TorusKnotGeometry-three',
+    name: 'TorusKnotGeometryThreeJS',
     component: TorusKnotGeometry
   },
   {
-    path: '/threejs/obj-models',
-    name: 'OBJModels',
+    path: '/threejs/obj-models-three',
+    name: 'OBJModelsThreeJS',
     component: OBJModels
   },
   {
-    path: '/threejs/fbx-models',
-    name: 'FBXModels',
+    path: '/threejs/fbx-models-three',
+    name: 'FBXModelsThreeJS',
     component: FBXModels
   },
   {
-    path: '/babylonjs',
-    name: 'Babylonjs',
+    path: '/babylonjs/obj-model-babylon',
+    name: 'OBJModelsBabylonJS',
     component: BabylonJS
   },
   {

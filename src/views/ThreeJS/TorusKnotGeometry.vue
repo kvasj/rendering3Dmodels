@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import TorusKnot from '@/components/TorusKnotGeometry.vue'
+import TorusKnot from '@/components/ThreeJS/TorusKnotGeometry.vue'
 
 export default {
     components: {

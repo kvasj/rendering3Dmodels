@@ -3,7 +3,8 @@
 </template>
 
 <script>
-import Cat from '@/components/ThreeJS/Cat.vue'
+import Cat from '@/components/BabylonJS/Cat.vue'
+
 export default {
     components: {
         Cat,

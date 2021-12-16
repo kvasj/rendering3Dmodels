@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import Godette from '@/components/Godette.vue'
+import Godette from '@/components/ThreeJS/Godette.vue'
 
 export default {
     components: {

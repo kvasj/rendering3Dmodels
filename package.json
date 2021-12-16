@@ -8,6 +8,8 @@
   },
   "dependencies": {
     "@google/model-viewer": "^1.9.0",
+    "babylonjs": "^4.2.0",
+    "babylonjs-loaders": "^4.2.0",
     "three": "^0.133.1",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0"
